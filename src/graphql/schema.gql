@@ -1,0 +1,48 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  title: String!
+  description: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  totalPostCount(filters: FilterPostInput): Int!
+  post(id: String!): Post!
+  posts(pageNumber: Int!, pageSize: Int!, filters: FilterPostInput): [Post!]!
+}
+
+input FilterPostInput {
+  title: String
+  description: String
+}
+
+type Mutation {
+  createPost(post: CreatePostInput!): Post!
+  updatePost(id: String!, post: UpdatePostInput!): Post!
+  deletePost(id: String!, softDelete: Boolean = false): Post!
+}
+
+input CreatePostInput {
+  title: String!
+  description: String
+}
+
+input UpdatePostInput {
+  title: String
+  description: String
+}
+
+type Subscription {
+  postCreated: Post!
+}
